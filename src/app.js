@@ -27,6 +27,10 @@ app.post('/send-message', (req, res) => {
   res.send('Got it');
 });
 
+app.get('/receive-message', (req, res) => {
+  res.send('received message');
+});
+
 //provide error messages
 app.use(function errorHandler(error, req, res, next) {
   let response;
