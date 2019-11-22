@@ -7,3 +7,10 @@ const knexInstance = knex({
   connection: process.env.DB_URL,
 });
 
+const SendMessages = {
+  getSendMessages() {
+    return 'all the messages';
+  }
+};
+
+module.exports = SendMessages;
