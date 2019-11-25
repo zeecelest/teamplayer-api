@@ -37,6 +37,8 @@ messagesRouter
 
     newMessage.date_published = date_published;
 
+    console.log(req.app.get('db'));
+    
     MessagesService.insertMessage(
       req.app.get('db'),
       newMessage

@@ -25,14 +25,14 @@ app.get('/', (req, res) => {
   res.send('Hello, world!');
 });
 
-app.post('/send-message', (req, res) => {
-  console.log(req.body);
-  res.send('Got it');
-});
+// app.post('/messages-router', (req, res) => {
+//   console.log(req.body);
+//   res.send('Got it');
+// });
 
-app.get('/receive-message', (req, res) => {
-  res.send('received message');
-});
+// app.get('/receive-message', (req, res) => {
+//   res.json('received message');
+// });
 
 //provide error messages
 app.use(function errorHandler(error, req, res, next) {
@@ -72,4 +72,5 @@ app.use(function validateBearerToken(req, res, next) {
   // move to the next middleware
   next();
 });
+
 module.exports = app;

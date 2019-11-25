@@ -1,12 +1,12 @@
 const messagesService = {
   getAllMessages(knex) {
-    return knex.select('*').from('team_player_messages');
+    return knex.select('*').from('messages');
   },
   
   insertMessage(knex, newMessage) {
     return knex
       .insert(newMessage)
-      .into('team_player_messages')
+      .into('messages')
       .returning('*')
       .then(rows => {
         return rows[0];
@@ -15,20 +15,20 @@ const messagesService = {
   
   getById(knex, id) {
     return knex
-      .from('team_player_messages')
+      .from('messages')
       .select('*')
       .where('id', id)
       .first();
   },
   
   deleteMessage(knex, id) {
-    return knex('team_player_messages')
+    return knex('messages')
       .where({ id })
       .delete();
   },
 
   updateMessage(knex, id, newMessageFields) {
-    return knex('team_player_messages')
+    return knex('messages')
       .where({ id })
       .update(newMessageFields);
   },
