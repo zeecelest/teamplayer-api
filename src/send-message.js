@@ -11,7 +11,6 @@ const SendMessages = {
   getSendMessages() {
     return knex.select('*').from('team_player_messages');
     },
-  };
   
   insertMessage(knex, newMessage) {
     return knex
@@ -21,6 +20,6 @@ const SendMessages = {
       .then(rows => {
         return rows[0];
       });
-  };
+  },
 
 module.exports = SendMessages;

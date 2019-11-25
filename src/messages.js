@@ -1,5 +1,5 @@
-require('dotenv').config()
-const knex = require('knex')
+require('dotenv').config();
+const knex = require('knex');
 const SendMessages = require('./send-messages');
 
 const knexInstance = knex({
@@ -8,3 +8,5 @@ const knexInstance = knex({
 });
 
 console.log(SendMessages.getSendMessages());
+
+
