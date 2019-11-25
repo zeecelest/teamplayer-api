@@ -1,10 +1,11 @@
-//exports the app ready for integration testing
 require('dotenv').config();
 const express = require('express');
 const morgan = require('morgan');
 const cors = require('cors');
 const helmet = require('helmet');
 const { NODE_ENV } = require('./config');
+const messagesRouter = require('./messages-router');
+const messagesServices = require('./messages-service');
 
 const app = express();
 
@@ -16,6 +17,7 @@ app.use(morgan(morganOption));
 app.use(helmet());
 app.use(cors());
 app.use(express.json());
+app.use('/api/messages/', messagesRouter);
 
 //make test pass by adding basic endpoints to app.js
 app.get('/', (req, res) => {
@@ -43,8 +45,4 @@ app.use(function errorHandler(error, req, res, next) {
   res.status(500).json(response);
 });
 
-const PORT = process.env.PORT || 8000;
-app.listen(PORT, () => {
-  console.log(`Listening on port ${PORT}`);
-});
 module.exports = app;

@@ -9,8 +9,18 @@ const knexInstance = knex({
 
 const SendMessages = {
   getSendMessages() {
-    return 'all the messages';
-  }
-};
+    return knex.select('*').from('team_player_messages');
+    },
+  };
+  
+  insertMessage(knex, newMessage) {
+    return knex
+      .insert(newMessage)
+      .into('team_player_messages')
+      .returning('*')
+      .then(rows => {
+        return rows[0];
+      });
+  };
 
 module.exports = SendMessages;
