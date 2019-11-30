@@ -1,6 +1,8 @@
 const messagesService = {
-  getAllMessages(knex) {
-    return knex.select('*').from('messages');
+  getAllMessages(knex, username) {
+    return knex.select('*').from('messages').where({
+      recipient: username
+    });
   },
   
   insertMessage(knex, newMessage) {

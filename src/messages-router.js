@@ -17,7 +17,8 @@ messagesRouter
   .route('/')
   .get((req, res, next) => {
     const knexInstance = req.app.get('db');
-    MessagesService.getAllMessages(knexInstance)
+    const username = req.query.username;
+    MessagesService.getAllMessages(knexInstance, username)
       .then(messages => {
         res.json(messages.map(serializeMessage));
       })
@@ -38,7 +39,7 @@ messagesRouter
     newMessage.date_published = date_published;
 
     console.log(req.app.get('db'));
-    
+
     MessagesService.insertMessage(
       req.app.get('db'),
       newMessage
@@ -53,7 +54,7 @@ messagesRouter
   });
 
 messagesRouter
-  .route('/:message_id')
+  .route('/')
   .all((req, res, next) => {
     MessagesService.getById(
       req.app.get('db'),
@@ -84,10 +85,10 @@ messagesRouter
       .catch(next);
   })
   .patch(jsonParser, (req, res, next) => {
-    const { text, date_commented } = req.body;
-    const commentToUpdate = { text, date_commented };
+    const { text, date_updated } = req.body;
+    const messageToUpdate = { text, date_updated };
 
-    const numberOfValues = Object.values(commentToUpdate).filter(Boolean).length;
+    const numberOfValues = Object.values(messageToUpdate).filter(Boolean).length;
     if (numberOfValues === 0)
       return res.status(400).json({
         error: {
@@ -99,12 +100,11 @@ messagesRouter
       req.app.get('db'),
       req.params.message_id,
       messageToUpdate,
-      )
-
+    )
       .then(numRowsAffected => {
         res.status(204).end();
       })
       .catch(next);
-  });
+  })
 
 module.exports = messagesRouter;
