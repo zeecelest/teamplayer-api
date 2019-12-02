@@ -1,5 +1,5 @@
 const messagesService = {
-  getAllMessages(knex, username) {
+  getAllMessages(knex) {
     return knex.select('*').from('messages');
   },
   
