@@ -26,10 +26,10 @@ app.get('/', (req, res) => {
   res.send('Hello, world!');
 });
 
-// app.post('/messages-router', (req, res) => {
-//   console.log(req.body);
-//   res.send('Got it');
-// });
+app.post('/messages-router', (req, res) => {
+  console.log(req.body);
+  res.send('Got it');
+});
 
 // app.get('/receive-message', (req, res) => {
 //   res.json('received message');
