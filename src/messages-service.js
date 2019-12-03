@@ -1,6 +1,6 @@
 const messagesService = {
   getAllMessages(knex) {
-    return knex.select('*').from('messages');
+    return knex.select('*').from('messages').orderBy('id', 'desc');
   },
   
   insertMessage(knex, newMessage) {

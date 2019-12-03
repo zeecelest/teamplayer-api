@@ -25,9 +25,9 @@ messagesRouter
       .catch(next);
   })
   .post(jsonParser, (req, res, next) => {
-    const { message, recipient, date_published } = req.body;
+    const { message, recipient } = req.body;
     const newMessage = { message, recipient };
-
+   
     for (const [key, value] of Object.entries(newMessage)) {
       if (value == null) {
         return res.status(400).json({
@@ -36,9 +36,10 @@ messagesRouter
       }
     }
 
-    newMessage.date_published = date_published;
+  
+    console.log(newMessage);
 
-    console.log(req.app.get('db'));
+ 
 
     MessagesService.insertMessage(
       req.app.get('db'),
