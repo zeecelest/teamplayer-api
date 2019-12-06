@@ -25,7 +25,7 @@ messagesRouter
       .catch(next);
   })
   .post(jsonParser, (req, res, next) => {
-    const { message, recipient } = req.body;
+    const { message, recipient, messageid } = req.body;
     const newMessage = { message, recipient };
    
     for (const [key, value] of Object.entries(newMessage)) {
@@ -46,12 +46,16 @@ messagesRouter
       newMessage
     )
       .then(message => {
+        if(messageid) {
+          const replyMessage = (`{messageid, ${message.id}`)
+        }
         res
           .status(201)
           .location(path.posix.join(req.originalUrl, `/${message.id}`))
           .json(serializeMessage(message));
       })
-      .catch(next);
+      .catch(next); 
+
   });
 
 messagesRouter
