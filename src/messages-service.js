@@ -12,6 +12,16 @@ const messagesService = {
         return rows[0];
       });
   },
+
+  insertMessageReply(knex, newMessage) {
+    return knex
+      .insert(newMessage)
+      .into('messages')
+      .returning('*')
+      .then(rows => {
+        return rows[0];
+      });
+  },
   
   getById(knex, id) {
     return knex
