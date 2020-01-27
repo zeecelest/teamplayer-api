@@ -17,8 +17,8 @@ messagesRouter
   .route('/')
   .get((req, res, next) => {
     const knexInstance = req.app.get('db');
-    const username = req.query.username;
-    MessagesService.getAllMessages(knexInstance, username)
+    // const username = req.query.username;
+    MessagesService.getAllMessages(knexInstance)
       .then(messages => {
         res.json(messages.map(serializeMessage));
       })
