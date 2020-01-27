@@ -2,7 +2,7 @@
   "name": "team-player-app-api",
   "version": "0.0.1",
   "description": "",
-  "main": "index.js",
+  "main": "src/server.js",
   "scripts": {
     "test": "mocha --require test/setup.js",
     "start": "node src/server.js",
