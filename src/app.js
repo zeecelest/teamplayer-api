@@ -19,7 +19,7 @@ app.use(morgan(morganOption));
 app.use(helmet());
 app.use(cors());
 app.use(express.json());
-app.use('/api/messages', messagesRouter);
+app.use('/api/messages/', messagesRouter);
 
 //make test pass by adding basic endpoints to app.js
 app.get('/', (req, res) => {
